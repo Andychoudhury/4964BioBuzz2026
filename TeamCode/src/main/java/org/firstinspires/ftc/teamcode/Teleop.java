@@ -73,8 +73,11 @@ public class Teleop extends LinearOpMode {
     private DcMotor backLeftDrive = null;
     private DcMotor frontRightDrive = null;
     private DcMotor backRightDrive = null;
-    private DcMotor Intake = null;
-    private CRServo Shooter = null;
+    private DcMotor intake = null;
+    private DcMotor shooter = null;
+    private CRServo transfer1 = null;
+    private CRServo transfer2 = null;
+    private CRServo adjustShooter = null;
     //private double speedMultiplier;
 
     @Override
@@ -86,8 +89,12 @@ public class Teleop extends LinearOpMode {
         backLeftDrive = hardwareMap.get(DcMotor.class, "BackLeft");
         frontRightDrive = hardwareMap.get(DcMotor.class, "FrontRight");
         backRightDrive = hardwareMap.get(DcMotor.class, "BackRight");
-        Intake = hardwareMap.get(DcMotor.class,"Intake");
-        Shooter = hardwareMap.get(CRServo.class,"Shooter");
+        intake = hardwareMap.get(DcMotor.class,"Intake");
+        shooter = hardwareMap.get(DcMotor.class,"Shooter");
+        transfer1 = hardwareMap.get(CRServo.class,"Transfer1");
+        transfer2 = hardwareMap.get(CRServo.class,"Transfer2");
+        adjustShooter  = hardwareMap.get(CRServo.class,"AdjustShooter");
+
 
         // ########################################################################################
         // !!!            IMPORTANT Drive Information. Test your motor directions.            !!!!!
@@ -163,15 +170,15 @@ public class Teleop extends LinearOpMode {
             frontRightDrive.setPower(frontRightPower);
             backLeftDrive.setPower(backLeftPower);
             backRightDrive.setPower(backRightPower);
-            Intake.setPower(intakePower);
-            Shooter.setPower(shooterPower);
+            intake.setPower(intakePower);
+            shooter.setPower(shooterPower);
 
             // Show the elapsed game time and wheel power.
             telemetry.addData("Status", "Run Time: " + runtime.toString());
             telemetry.addData("Speed multiplier",speedMultiplier);
             telemetry.addData("Front left/Right", "%4.2f, %4.2f", frontLeftPower, frontRightPower);
             telemetry.addData("Back  left/Right", "%4.2f, %4.2f", backLeftPower, backRightPower);
-            telemetry.addData("Shooter power",shooterPower);
+            telemetry.addData("shooter power",shooterPower);
             telemetry.addData("Intake power",intakePower);
             telemetry.update();
         }
